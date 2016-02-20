@@ -1,0 +1,244 @@
+
+<div class="container" ng-controller="singlePatientCtrl" ng-init='getAllPatients()'>
+    <div class="container">
+        <h1 align="left">REGISTER NEW PATIENT</h1>
+    <br></br>
+  <form class="form-horizontal" role="form" name="newPatientRegistrationForm" ng-submit="submitted = true" novalidate>
+
+    <!-- Patient p_id Condition: Required -->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.p_id.$invalid && !newPatientRegistrationForm.p_id.$pristine }">
+
+        <label class="control-label col-sm-2">* Patient ID :</label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="p_id" 
+                    ng-model="patient.p_id" 
+                    placeholder="Enter Patient ID"
+                    id="p_id"
+                    id-validator
+
+                    required>
+           <p ng-show="newPatientRegistrationForm.p_id.$invalid && !newPatientRegistrationForm.p_id.$pristine && !newPtientRegistration.p_id.$touched" class="help-block">Patient ID is already there!</p>
+            <span ng-if="submitted && newPatientRegistrationForm.p_id.$error.required">Patient ID is required!</span> 
+        </div>
+    </div>
+
+    <!-- Patient First Name: Required  -->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.first_name.$invalid && !newPatientRegistrationForm.first_name.$pristine }">
+
+        <label class="control-label col-sm-2">* First Name:</label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="first_name" 
+                    ng-model="patient.p_first_name" 
+                    placeholder="Enter First Name" 
+                    required>
+            <p ng-show="newPatientRegistrationForm.first_name.$invalid && !newPatientRegistrationForm.first_name.$pristine" class="help-block">First Name is required!</p>
+            <span ng-if="submitted && newPatientRegistrationForm.first_name.$error.required">First Name is required!</span> 
+        </div>
+    </div>
+
+    <!-- Patient Last Name -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" for="last_name" >  Last Name:</label>
+
+        <div class="col-sm-3">
+            <input  type="last_name" 
+                    class="form-control" 
+                    name="last_name" 
+                    ng-model="patient.p_last_name" 
+                    placeholder="Enter Last Name">
+        </div>
+    </div>
+
+    <!-- Patient Date of Birth: Required -->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.dob.$invalid && !newPatientRegistrationForm.dob.$pristine }">
+
+        <label class="control-label col-sm-2">* Date of Birth:</label>
+
+        <div class="col-sm-3">
+        <div class="input-group date" data-provide="datepicker">
+            <input  type="text" 
+                    class="form-control" 
+                    name="dob" 
+                    ng-model="patient.p_dob" 
+                    placeholder="MM/DD/YYYY" 
+                    required>
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+                <p ng-show="newPatientRegistrationForm.dob.$invalid && !newPatientRegistrationForm.dob.$pristine" class="help-block">Date of Birth is required! Pick a date</p>
+                <span ng-if="submitted && newPatientRegistrationForm.dob.$error.required">Date of Birth is required! Pick a date</span> 
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Patient Address1: Required -->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.address1.$invalid && !newPatientRegistrationForm.address1.$pristine }">
+
+        <label class="control-label col-sm-2">* Address:</label>
+
+        <div class="col-sm-4">
+            <input  type="text" 
+                    class="form-control" 
+                    name="address1" 
+                    ng-model="patient.p_address1" 
+                    placeholder="Enter Address" 
+                    required>
+            <p ng-show="newPatientRegistrationForm.address1.$invalid && !newPatientRegistrationForm.address1.$pristine" class="help-block">Enter address</p>
+            <span ng-if="submitted && newPatientRegistrationForm.address1.$error.required">Enter address</span> 
+        </div>
+    </div>
+
+    <!-- Patient Address2 -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2">Apt#:</label>
+
+        <div class="col-sm-3">
+            <input  type="address2" 
+                    class="form-control" 
+                    name="address2" 
+                    ng-model="patient.p_address2" 
+                    placeholder="Enter Apt#">
+        </div>
+    </div>
+
+    <!-- Patient City: Required -->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.city.$invalid && !newPatientRegistrationForm.city.$pristine }">
+
+        <label class="control-label col-sm-2">* City:</label>
+
+        <div class="col-sm-3">
+            <input  type="city" 
+                    class="form-control" 
+                    name="city" 
+                    ng-model="patient.p_city" 
+                    placeholder="Enter City" 
+                    required> 
+            <p ng-show="newPatientRegistrationForm.city.$invalid && !newPatientRegistrationForm.city.$pristine" class="help-block">Select City</p>
+            <span ng-if="submitted && newPatientRegistrationForm.city.$error.required">Select City</span> 
+        </div>
+    </div>
+
+    <!-- Patient State: Required -->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.state.$invalid && !newPatientRegistrationForm.state.$pristine }">
+
+        <label class="control-label col-sm-2">* State:</label>
+
+        <div class="col-sm-3">
+            <input  type="state" 
+                    class="form-control" 
+                    name="state" 
+                    ng-model="patient.p_state" 
+                    placeholder="Enter State" 
+                    required>
+            <p ng-show="newPatientRegistrationForm.state.$invalid && !newPatientRegistrationForm.state.$pristine" class="help-block">Select State</p>
+            <span ng-if="submitted && newPatientRegistrationForm.state.$error.required">Select State</span> 
+        </div>
+    </div>
+
+    <!-- Patient Zip: Required, Minimum length= 5 -->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.zip.$invalid && !newPatientRegistrationForm.zip.$pristine }">
+
+        <label class="control-label col-sm-2">* Zip Code:</label>
+
+        <div class="col-sm-2">
+            <input  type="zip" 
+                    class="form-control" 
+                    name="zip" 
+                    ng-model="patient.p_zipcode" 
+                    placeholder="Enter Zip" 
+                    minlength="5" 
+                    required>
+            <p ng-show="newPatientRegistrationForm.zip.$invalid && !newPatientRegistrationForm.zip.$pristine" class="help-block">Enter a valid Zip code</p>
+            <span ng-if="submitted && newPatientRegistrationForm.zip.$error.required">Enter Zip code</span> 
+        </div>
+    </div>
+
+    <!-- Patient Phone: Required-->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.phone.$invalid && !newPatientRegistrationForm.phone.$pristine }">
+
+        <label class="control-label col-sm-2" for="phone">Phone:</label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="phone" 
+                    ng-model="patient.p_mobile_contact" 
+                    placeholder="( ___ ) - ___ - ____">
+            <p ng-show="newPatientRegistrationForm.phone.$invalid && !newPatientRegistrationForm.phone.$pristine" class="help-block">Enter a valid phone number!</p>
+            <span ng-if="submitted && newPatientRegistrationForm.phone.$error.required">Enter a phone number</span> 
+        </div>
+    </div>
+
+    <!-- Patient email address: Check for @ -->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.email.$invalid && !newPatientRegistrationForm.email.$pristine }">
+
+        <label class="control-label col-sm-2" for="Email">Email:</label>
+
+        <div class="col-sm-4">
+            <input  type="email" 
+                    class="form-control" 
+                    name="email" 
+                    ng-model="patient.p_email" 
+                    placeholder="Enter Email address">
+            <p ng-show="newPatientRegistrationForm.email.$invalid && !newPatientRegistrationForm.email.$pristine" class="help-block">Enter a valid email address!</p>
+        </div>
+    </div>
+
+    <!-- Patient's Case worker: Required -->
+    <div class="form-group" ng-class="{ 'has-error' : newPatientRegistrationForm.case_worker.$invalid && !newPatientRegistrationForm.case_worker.$pristine }">
+
+        <label class="control-label col-sm-2" for="case_worker" >* Case Worker:</label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="case_worker" 
+                    ng-model="patient.p_case_worker" 
+                    placeholder="Enter Case Worker" 
+                    required>
+            <p  ng-show="newPatientRegistrationForm.case_worker.$invalid && !newPatientRegistrationForm.case_worker.$pristine" 
+                class="help-block">
+                Select a case worker!
+            </p>
+            <span ng-if="submitted && newPatientRegistrationForm.case_worker.$error.required">Select a case worker!</span> 
+        </div>
+    </div>
+
+    <!-- Patient's Program: Required -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" for="program" required>* Program:</label>
+
+        <div class="col-sm-4">
+            <label class="control-label col-sm-2">
+                <input type="checkbox"> Weight Loss 
+            </label>
+            <label class="control-label col-sm-2">
+                <input type="checkbox"> Diabetes 
+            </label>
+        </div>
+    </div>
+    <br></br>
+    <div class="form-actions" >
+
+        <button type="submit" 
+                ng-click="newPatientRegistrationForm.$valid && addPatient(patient,newPatientRegistrationForm.$valid)" 
+                class="btn btn-primary btn-lg" 
+                style="padding: 5px 100px; float: left; margin-left: 70px">
+            SUBMIT
+        </button> 
+    </div>
+  </form>
+  <br></br>
+  <br></br>
+  <br></br>
+</div>
+</div>

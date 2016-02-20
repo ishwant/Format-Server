@@ -3,9 +3,38 @@ var mongoose = require('mongoose');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
-        first_name     : String,
-        last_name     : String,
-        token		: String
+        p_id              : { type : String, unique : true, required : true },
+        p_first_name      : String,
+        p_last_name       : String,
+        p_token		  : { type : String},
+        p_dob             : Date,
+        p_mobile_contact  : String,
+        p_email           : String,
+        p_address1         : String,
+        p_address2         : String,
+        p_city            : String,
+        p_state           : String,
+        p_zipcode         : String,
+        p_case_worker     : String,
+        p_active          : Boolean,
+        p_program         : { type : Array , "default" : [] },
+        p_event_entries   : [{
+        	shared_date    : Date,
+        	
+        	category       : String,
+        	event_name     : String,
+        	event_notes    : String,
+        	event_timestamp: String,
+
+        	medicine_amount: Number,
+        	medicine_type  : String,
+
+        	meal_amount    : Number,
+
+        	reading_value  : Number,
+
+        	activity_time  : Number,
+        }]
 });
 
 // checking if token is valid

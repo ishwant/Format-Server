@@ -1,0 +1,184 @@
+<div class="container" ng-controller="singlePatientCtrl" ng-init= 'getUrlParamtoViewPatient()'>
+    <div class="container">
+        <h1 align="left">PATIENT PROFILE</h1>
+    <br></br>
+
+    <form class="form-horizontal" role="form" name="viewPatientForm" ng-init= 'viewRegisteredPatient()'>
+
+    <!-- Patient ID-->
+    <div class="form-group">
+        <label class="control-label col-sm-2">Patient ID : </label>
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static">{{patient.p_id}}</p> 
+        </div>
+    </div>
+
+    <!-- Patient First Name-->
+    <div class="form-group">
+        <label class="control-label col-sm-2">First Name : </label>
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static">{{patient.p_first_name}}</p>
+        </div>
+    </div>
+
+    <!-- Patient Last Name -->
+    <div class="form-group">
+        <label class="control-label col-sm-2">Last Name : </label>
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static">{{patient.p_last_name}}</p>
+        </div>
+    </div>
+
+    <!-- Patient Date of Birth-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2">Date of Birth:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{patient.p_dob}}</p>
+        </div>
+    </div>
+
+    <!-- Patient Address1-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2">Address:</label>
+
+        <div class="col-sm-4">
+
+            <p align="left"class="form-control-static">{{patient.p_address1}}</p>
+
+        </div>
+    </div>
+
+    <!-- Patient Address2 -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2">Apt#:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{patient.p_address2}}</p>
+        </div>
+    </div>
+
+    <!-- Patient City-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2">City:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{patient.p_city}}</p>
+        </div>
+    </div>
+
+    <!-- Patient State-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2">State:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{patient.p_state}}</p>
+        </div>
+    </div>
+
+    <!-- Patient Zip-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2">Zip Code:</label>
+
+        <div class="col-sm-2">
+            <p align="left"class="form-control-static" >{{patient.p_zipcode}}</p>
+        </div>
+    </div>
+
+    <!-- Patient Phone-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" >Phone:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{patient.p_mobile_contact}}</p>
+        </div>
+    </div>
+
+    <!-- Patient email address-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" for="Email">Email:</label>
+
+        <div class="col-sm-4">
+            <p align="left"class="form-control-static" >{{patient.p_email}}</p>
+        </div>
+    </div>
+
+    <!-- Patient's Case worker-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" for="case_worker" >Case Worker:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{patient.p_case_worker}}</p> 
+        </div>
+    </div>
+
+    <!-- Patient's Token -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" >Registration Token:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{patient.p_token}}</p> 
+        </div>
+    </div>
+
+    <!-- Profile Status -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" >Profile Status:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{patient.p_status}}</p> 
+        </div>
+    </div>
+
+    <!-- Patient's Program-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" for="program">Program:</label>
+
+        <div class="col-sm-4">
+            <label class="control-label col-sm-2">
+                <input type="checkbox"> Weight Loss 
+            </label>
+            <label class="control-label col-sm-2">
+                <input type="checkbox"> Diabetes 
+            </label>
+        </div>
+    </div>
+
+    <br></br>
+    <!-- Buttons -->
+    <div class="form-group">
+        <div class="col-sm-2">
+            <button class="btn btn-primary" style="padding: 5px 25px;" ng-click="editPatientRoute(patient)">
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+            </button>
+        </div>
+        <div class="col-sm-3">
+            <button ng-if="patient.p_active == true" class="btn btn-primary" style="padding: 5px 10px;" ng-click="togglePatientStatus(patient)">
+                <span class="glyphicon glyphicon-ban-circle" ></span> De-Activate
+            </button>
+            <button ng-if="patient.p_active != true" class="btn btn-primary" style="padding: 5px 10px;" ng-click="togglePatientStatus(patient)">
+                <span class="glyphicon glyphicon-ok-circle" ></span> Activate
+            </button>
+        </div>
+
+    </div>
+
+
+    </form>
+  <br></br>
+  <br></br>
+  <br></br>
+</div>
+</div>

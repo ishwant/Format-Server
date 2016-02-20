@@ -19,7 +19,7 @@ var configDB = require('./config/database.js');
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
 
-require('./config/passport')(passport); // pass passport for configuration
+//require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
@@ -41,41 +41,11 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 //require('./app/routes_passport.js')(app, passport); // load our routes and pass in our app and fully configured passport
-//require('./app/routes.js')(app); // configure our routes
+require('./app/routes.js')(app); // configure our routes
+require('./app/p_routes.js')(app); //patient info related routes
 
-
-
-
-console.log('TESTING');
-//JUST THE LOGIN PART : DONT FORGET TO MOVE IT LATER
-
-var User            = require('./app/models/user.js');
-app.post('/signup', function(req, res) { //I
-	console.log('calling me');
-	console.log(req.body.userFName);
-	console.log(req.body.userLName);
-	console.log(req.body.userToken);
-
-
-   var req_fname = req.body.userFName;
-   var req_lname = req.body.userLName;
-   var req_token = req.body.userToken;
-
-   User.find({ token : req_token.toString()},function(err,founduser){
-   		console.log('query ran');
-   		console.log(founduser.toString());
-   		if(founduser.length <=0){
-   			console.log("Error found");
-   			res.send({ status : 'FAIL' , message : err });	
-   		} else {
-   			res.send(founduser);				
-   		}
-   });
-});
 
 // launch ======================================================================
 app.listen(port);
- 
-
-
 console.log('The magic happens on port ' + port);
+
