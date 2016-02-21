@@ -37,6 +37,8 @@
 			templateUrl: 'Modules/Patients/Views/home.html',
 			controller: 'allPatientsCtrl'
 		})
+
+		//PATIENTS
 		.when('/registerPatient', {
 			templateUrl: 'Modules/Patients/Views/registerPatient.html',
 			controller: 'singlePatientCtrl'
@@ -53,6 +55,29 @@
 			templateUrl: 'Modules/Patients/Views/editPatient.html',
 			controller: 'singlePatientCtrl'
 		})
+
+		//CASE WORKERS
+		.when('/CaseWorkers', {
+			templateUrl: 'Modules/Case Workers/Views/c_home.html',
+			controller: 'allCaseWorkersCtrl'
+		})
+		.when('/registerCaseWorker', {
+			templateUrl: 'Modules/Case Workers/Views/registerCaseWorker.html',
+			controller: 'singleCaseWorkerCtrl'
+		})
+		.when('/CaseWorkerRegistrationDetails/:c_id', {
+			templateUrl: 'Modules/Case Workers/Views/c_registrationDetails.html',
+			controller: 'singleCaseWorkerCtrl'
+		})
+		.when('/viewCaseWorker/:c_id', {
+			templateUrl: 'Modules/Case Workers/Views/viewCaseWorker.html',
+			controller: 'singleCaseWorkerCtrl'
+		})
+		.when('/editCaseWorker/:c_id', {
+			templateUrl: 'Modules/Case Workers/Views/editCaseWorker.html',
+			controller: 'singleCaseWorkerCtrl'
+		})
+
 		.otherwise({
 			redirectTo: '/'
 		});

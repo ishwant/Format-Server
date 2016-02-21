@@ -1,0 +1,97 @@
+<div class="container" ng-controller="singleCaseWorkerCtrl" ng-init= 'getUrlParamtoViewCaseWorker()'>
+    <div class="container">
+        <h1 align="left">CASE WORKER PROFILE</h1>
+    <br></br>
+
+    <form class="form-horizontal" role="form" name="viewCaseWorkerForm" ng-init= 'viewRegisteredCaseWorker()'>
+
+    <!-- caseWorker ID-->
+    <div class="form-group">
+        <label class="control-label col-sm-2">Case Worker ID : </label>
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static">{{caseWorker.c_id}}</p> 
+        </div>
+    </div>
+
+    <!-- caseWorker First Name-->
+    <div class="form-group">
+        <label class="control-label col-sm-2">First Name : </label>
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static">{{caseWorker.c_first_name}}</p>
+        </div>
+    </div>
+
+    <!-- caseWorker Last Name -->
+    <div class="form-group">
+        <label class="control-label col-sm-2">Last Name : </label>
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static">{{caseWorker.c_last_name}}</p>
+        </div>
+    </div>
+
+    <!-- caseWorker Phone-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" >Phone:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{caseWorker.c_mobile_contact}}</p>
+        </div>
+    </div>
+
+    <!-- caseWorker email address-->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" for="Email">Email:</label>
+
+        <div class="col-sm-4">
+            <p align="left"class="form-control-static" >{{caseWorker.c_email}}</p>
+        </div>
+    </div>
+
+    <!-- caseWorker's Token -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" >Registration Token:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{caseWorker.c_token}}</p> 
+        </div>
+    </div>
+
+    <!-- Profile Status -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" >Profile Status:</label>
+
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{caseWorker.c_status}}</p> 
+        </div>
+    </div>
+
+    <br></br>
+    <!-- Buttons -->
+    <div class="form-group">
+        <div class="col-sm-2">
+            <button class="btn btn-primary" style="padding: 5px 25px;" ng-click="editCaseWorkerRoute(caseWorker)">
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+            </button>
+        </div>
+        <div class="col-sm-3">
+            <button ng-if="caseWorker.c_active == true" class="btn btn-primary" style="padding: 5px 10px;" ng-click="toggleCaseWorkerStatus(caseWorker)">
+                <span class="glyphicon glyphicon-ban-circle" ></span> De-Activate
+            </button>
+            <button ng-if="caseWorker.c_active != true" class="btn btn-primary" style="padding: 5px 10px;" ng-click="toggleCaseWorkerStatus(caseWorker)">
+                <span class="glyphicon glyphicon-ok-circle" ></span> Activate
+            </button>
+        </div>
+
+    </div>
+
+
+    </form>
+  <br></br>
+  <br></br>
+  <br></br>
+</div>
+</div>

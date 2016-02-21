@@ -1,0 +1,107 @@
+
+<div class="container" ng-controller="singleCaseWorkerCtrl" ng-init='allCaseWorkersCtrl()'>
+    <div class="container">
+        <h1 align="left">REGISTER NEW CASE WORKER</h1>
+    <br></br>
+  <form class="form-horizontal" role="form" name="newCaseWorkersRegistrationForm" ng-submit="submitted = true" novalidate>
+
+    <!-- CaseWorker c_id Condition: Required -->
+    <div class="form-group" ng-class="{ 'has-error' : newCaseWorkersRegistrationForm.c_id.$invalid && !newCaseWorkersRegistrationForm.c_id.$pristine }">
+
+        <label class="control-label col-sm-2">* Case Worker ID :</label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="c_id" 
+                    ng-model="caseWorker.c_id" 
+                    placeholder="Enter Case Worker ID"
+                    id="c_id"
+                    id-validation
+                    required>
+           <p ng-show="newCaseWorkersRegistrationForm.c_id.$invalid && !newCaseWorkersRegistrationForm.c_id.$pristine && !newPtientRegistration.c_id.$touched" class="help-block">Case Worker ID is already there!</p>
+            <span ng-if="submitted && newCaseWorkersRegistrationForm.c_id.$error.required">Case Worker ID is required!</span> 
+        </div>
+    </div>
+
+    <!-- caseWorker First Name: Required  -->
+    <div class="form-group" ng-class="{ 'has-error' : newCaseWorkersRegistrationForm.first_name.$invalid && !newCaseWorkersRegistrationForm.first_name.$pristine }">
+
+        <label class="control-label col-sm-2">* First Name:</label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="first_name" 
+                    ng-model="caseWorker.c_first_name" 
+                    placeholder="Enter First Name" 
+                    required>
+            <p ng-show="newCaseWorkersRegistrationForm.first_name.$invalid && !newCaseWorkersRegistrationForm.first_name.$pristine" class="help-block">First Name is required!</p>
+            <span ng-if="submitted && newCaseWorkersRegistrationForm.first_name.$error.required">First Name is required!</span> 
+        </div>
+    </div>
+
+    <!-- caseWorker Last Name -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" for="last_name" >* Last Name:</label>
+
+        <div class="col-sm-3">
+            <input  type="last_name" 
+                    class="form-control" 
+                    name="last_name" 
+                    ng-model="caseWorker.c_last_name" 
+                    placeholder="Enter Last Name"
+                    required>
+            <p ng-show="newCaseWorkersRegistrationForm.last_name.$invalid && !newCaseWorkersRegistrationForm.last_name.$pristine" class="help-block">Last Name is required!</p>
+            <span ng-if="submitted && newCaseWorkersRegistrationForm.last_name.$error.required">Last Name is required!</span> 
+        </div>
+    </div>
+
+    
+    <!-- Patient Phone: Required-->
+    <div class="form-group" ng-class="{ 'has-error' : newCaseWorkersRegistrationForm.phone.$invalid && !newCaseWorkersRegistrationForm.phone.$pristine }">
+
+        <label class="control-label col-sm-2" for="phone">Phone:</label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="phone" 
+                    ng-model="caseWorker.c_mobile_contact" 
+                    placeholder="( ___ ) - ___ - ____">
+            <p ng-show="newCaseWorkersRegistrationForm.phone.$invalid && !newCaseWorkersRegistrationForm.phone.$pristine" class="help-block">Enter a valid phone number!</p>
+            <span ng-if="submitted && newCaseWorkersRegistrationForm.phone.$error.required">Enter a phone number</span> 
+        </div>
+    </div>
+
+    <!-- Patient email address: Check for @ -->
+    <div class="form-group" ng-class="{ 'has-error' : newCaseWorkersRegistrationForm.email.$invalid && !newCaseWorkersRegistrationForm.email.$pristine }">
+
+        <label class="control-label col-sm-2" for="Email">Email:</label>
+
+        <div class="col-sm-4">
+            <input  type="email" 
+                    class="form-control" 
+                    name="email" 
+                    ng-model="caseWorker.c_email" 
+                    placeholder="Enter Email address">
+            <p ng-show="newCaseWorkersRegistrationForm.email.$invalid && !newCaseWorkersRegistrationForm.email.$pristine" class="help-block">Enter a valid email address!</p>
+        </div>
+    </div>
+    <br></br>
+    <div class="form-actions" >
+
+        <button type="submit" 
+                ng-click="newCaseWorkersRegistrationForm.$valid && addCaseWorker(caseWorker,newCaseWorkersRegistrationForm.$valid)" 
+                class="btn btn-primary btn-lg" 
+                style="padding: 5px 100px; float: left; margin-left: 70px">
+            SUBMIT
+        </button> 
+    </div>
+  </form>
+  <br></br>
+  <br></br>
+  <br></br>
+</div>
+</div>

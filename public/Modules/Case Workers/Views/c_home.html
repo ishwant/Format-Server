@@ -1,0 +1,55 @@
+<div class="container" ng-controller="allCaseWorkersCtrl" ng-init='getAllCaseWorkers()'>
+    <h1 class="panel-heading" class="glyphicon glyphicon-add">CASE WORKER RECORDS</h1>
+
+    <div align="left" style="padding-bottom: 12px; padding-right: 12px;">
+        <form class="form-inline">
+            <div class="form-group has-feedback">
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+            <input class="btn btn-primary" style="display:inline-block;width:200px;" onclick="location.href='#/registerCaseWorker';" role="button" value="Register New Case Worker">
+        </form>
+    </div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th ng-click="sort('c_id')">Id
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='c_id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('c_first_name')">First Name
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='c_first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('c_last_name')">Last Name
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='c_last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('c_mobile_contact')">Phone
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='c_mobile_contact'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('c_email')">Email 
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='c_email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="user in users|orderBy:sortKey:reverse|filter:search|itemsPerPage:10" ng-controller="singleCaseWorkerCtrl">
+
+                    <td>{{user.c_id}}</td>
+                    <td>{{user.c_first_name}}</td>
+                    <td>{{user.c_last_name}}</td>
+                    <td>{{user.c_mobile_contact}}</td>
+                    <td>{{user.c_email}}</td> 
+
+                    <td><a ng-click="viewCaseWorker(user)" class="glyphicon glyphicon-pencil"></a></td>
+                </tr>
+            </tbody>
+        </table> 
+        <dir-pagination-controls
+            max-size="10"
+            direction-links="true"
+            boundary-links="true" >
+        </dir-pagination-controls>
+    </div>
+</div>
+<!-- Ends Controller -->
+

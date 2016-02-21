@@ -1,0 +1,42 @@
+<div class="container" style="height: 842px; width: 595px; margin-left: auto; margin-right: auto;">
+<!--<div class="panel panel-primary" ng-controller="singlecaseWorkerCtrl" ng-init='viewRegisteredcaseWorker()'>-->
+<div class="panel panel-primary" ng-controller="singleCaseWorkerCtrl" ng-init='getUrlParamtoViewCaseWorker()'>
+
+	<div class="panel-heading">
+		CASE WORKER REGISTRATION DETAILS
+	</div>
+	<div class="panel-body" ng-init='viewRegisteredCaseWorker()'>
+		<span >
+			<button style="float:right" class="btn btn-default" onclick="javascript:window.print()">
+  				<span class="glyphicon glyphicon-print"></span> Print
+			</button>
+		</span>
+	</div>
+	<table class="table" style="width: auto; margin-left: auto; margin-right: auto;">
+		<tr>
+			<td><label style="float:right">Case Worker ID: </label></td>
+			<td><label>{{caseWorker.c_id}}</label></td>
+        </tr>
+        <tr>
+			<td><label style="float:right">First Name: </label></td>
+			<td><label>{{caseWorker.c_first_name}}</label></td>
+        </tr>
+        <tr>
+			<td><label style="float:right">Last Name: </label></td>
+			<td><label>{{caseWorker.c_last_name}}</label></td>
+        </tr>
+        <tr>
+			<td><label style="float:right">Phone: </label></td>
+			<td><label>{{caseWorker.c_mobile_contact}}</label></td>
+        </tr>
+        <tr>
+			<td><label style="float:right">Email: </label></td>
+			<td><label>{{caseWorker.c_email}}</label></td>
+        </tr>
+        <tr>
+			<td><label style="float:right">Registration Token: </label></td>
+			<td><label>{{caseWorker.c_token}}</label></td>
+        </tr>
+	<table>
+</div>
+</div>

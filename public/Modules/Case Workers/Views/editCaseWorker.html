@@ -1,0 +1,121 @@
+
+<div class="container" ng-controller="singleCaseWorkerCtrl" ng-init='getUrlParamtoEditCaseWorker()'>
+    <div class="container">
+        <h1 align="left">EDIT CASE WORKER PROFILE</h1>
+    <br></br>
+  <form class="form-horizontal" role="form" name="editCaseWorkerProfileForm" ng-submit="submitted = true" novalidate ng-init= 'viewRegisteredCaseWorker()'>
+
+    <!-- Patient c_id Condition: Required -->
+    <div class="form-group" ng-class="{ 'has-error' : editCaseWorkerProfileForm.c_id.$invalid && !editCaseWorkerProfileForm.c_id.$pristine }">
+
+        <label class="control-label col-sm-2">* Case Worker ID: </label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="c_id" 
+                    ng-model="caseWorker.c_id"                    
+                    id="c_id"
+                    disabled
+                    required>
+        </div>
+    </div>
+
+    <!-- Patient First Name: Required  -->
+    <div class="form-group" ng-class="{ 'has-error' : editCaseWorkerProfileForm.c_first_name.$invalid && !editCaseWorkerProfileForm.c_first_name.$pristine }">
+
+        <label class="control-label col-sm-2">* First Name:</label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="first_name" 
+                    ng-model="caseWorker.c_first_name" 
+                    required>
+            <p ng-show="editCaseWorkerProfileForm.p_first_name.$invalid && !editCaseWorkerProfileForm.c_first_name.$pristine" class="help-block">First Name is required!</p>
+            <span ng-if="submitted && editCaseWorkerProfileForm.c_first_name.$error.required">First Name is required!</span> 
+        </div>
+    </div>
+
+    <!-- Patient Last Name -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" for="c_last_name" >  Last Name:</label>
+
+        <div class="col-sm-3">
+            <input  type="c_last_name" 
+                    class="form-control" 
+                    name="c_last_name" 
+                    ng-model="caseWorker.c_last_name">
+            <p ng-show="editCaseWorkerProfileForm.c_last_name.$invalid && !editCaseWorkerProfileForm.c_last_name.$pristine" class="help-block">Last Name is required!</p>
+            <span ng-if="submitted && editCaseWorkerProfileForm.c_last_name.$error.required">Last Name is required!</span> 
+        </div>
+    </div>
+
+    <!-- Patient Phone: Required-->
+    <div class="form-group" ng-class="{ 'has-error' : editCaseWorkerProfileForm.c_phone.$invalid && !editCaseWorkerProfileForm.c_phone.$pristine }">
+
+        <label class="control-label col-sm-2" for="c_phone">Phone:</label>
+
+        <div class="col-sm-3">
+            <input  type="text" 
+                    class="form-control" 
+                    name="c_phone" 
+                    ng-model="caseWorker.c_mobile_contact">
+            <p ng-show="editCaseWorkerProfileForm.c_phone.$invalid && !editCaseWorkerProfileForm.c_phone.$pristine" class="help-block">Enter a valid phone number!</p>
+            <span ng-if="submitted && editCaseWorkerProfileForm.c_phone.$error.required">Enter a phone number</span> 
+        </div>
+    </div>
+
+    <!-- Patient email address: Check for @ -->
+    <div class="form-group" ng-class="{ 'has-error' : editCaseWorkerProfileForm.c_email.$invalid && !editCaseWorkerProfileForm.c_email.$pristine }">
+
+        <label class="control-label col-sm-2" for="c_email">Email:</label>
+
+        <div class="col-sm-4">
+            <input  type="email" 
+                    class="form-control" 
+                    name="c_email" 
+                    ng-model="caseWorker.c_email">
+            <p ng-show="editCaseWorkerProfileForm.c_email.$invalid && !editCaseWorkerProfileForm.c_email.$pristine" class="help-block">Enter a valid email address!</p>
+        </div>
+    </div>
+
+    <!-- Patient's Token -->
+    <div class="form-group">
+
+        <label class="control-label col-sm-2" >Registration Token:</label>
+
+        <div class="col-sm-3">
+        	<input  type="text" 
+                    class="form-control" 
+                    name="c_token" 
+                    ng-model="caseWorker.c_token" 
+                    ng-value="caseWorker.c_token"
+                    disabled
+                    required> 
+        </div>
+        <div class="col-sm-3">
+        	<button ng-click="generateToken()" 
+                	class="btn btn-primary">
+            			Generate New Token
+        	</button>
+        </div>
+    </div>
+
+    <br></br>
+    <div class="form-actions" >
+
+        <button type="submit" 
+                ng-click="editCaseWorkerProfileForm.$valid && editCaseWorker(caseWorker,editCaseWorkerProfileForm.$valid)" 
+                class="btn btn-primary btn-lg" 
+                style="padding: 5px 100px; float: left; margin-left: 70px">
+            UPDATE
+        </button> 
+    </div>
+  </form>
+  <br></br>
+  <br></br>
+  <br></br>
+</div>
+</div>
