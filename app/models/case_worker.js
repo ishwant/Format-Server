@@ -9,11 +9,7 @@ var case_worker_Schema = mongoose.Schema({
         c_token		  : { type : String},
         c_mobile_contact  : String,
         c_email           : String,
-        c_active          : Boolean
-        c_messages        : [{
-                c_share_date      : Date,
-                c_message         : String
-        }]
+        c_active          : Boolean,
 });
 
 module.exports = mongoose.model('caseWorkers', case_worker_Schema);

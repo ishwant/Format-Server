@@ -197,18 +197,11 @@
 
         <label class="control-label col-sm-2" for="case_worker" >* Case Worker:</label>
 
-        <div class="col-sm-3">
-            <input  type="text" 
-                    class="form-control" 
-                    name="case_worker" 
-                    ng-model="patient.p_case_worker" 
-                    placeholder="Enter Case Worker" 
-                    required>
-            <p  ng-show="newPatientRegistrationForm.case_worker.$invalid && !newPatientRegistrationForm.case_worker.$pristine" 
-                class="help-block">
-                Select a case worker!
-            </p>
-            <span ng-if="submitted && newPatientRegistrationForm.case_worker.$error.required">Select a case worker!</span> 
+        <div class="col-sm-4" >
+            <select class="form-control" id="case_worker" ng-model="patient.p_case_worker" ng-controller="allCaseWorkersCtrl" ng-init="getAllCaseWorkers()" ng-change="changeValue(patient.p_case_worker)" required>
+                <option>----Please select----</option>
+                <option ng-repeat="user in users">{{user.c_first_name}} {{user.c_last_name}} (ID = {{user.c_id}})</option>
+            </select>
         </div>
     </div>
 
@@ -217,14 +210,23 @@
 
         <label class="control-label col-sm-2" for="program" required>* Program:</label>
 
-        <div class="col-sm-4">
-            <label class="control-label col-sm-2">
-                <input type="checkbox"> Weight Loss 
-            </label>
-            <label class="control-label col-sm-2">
-                <input type="checkbox"> Diabetes 
-            </label>
+        <div class="col-sm-3">
+            <select multiple class="form-control" id="program" ng-controller="programCtrl" ng-init="getAllPrograms()" ng-model="patient.p_program" ng-change="changeValue(patient.p_program)">
+                <option ng-repeat="program in programs">{{program.programName}}</option>
+            </select>  
         </div>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" ng-model="program.programName" placeholder="+ Add New Program">  
+        </div>
+        <div class="col-sm-1">
+            <button ng-click="addNewProgram(program)"
+                    ng-controller="programCtrl" 
+                    class="btn btn-default">
+                        Add
+            </button>
+        </div>
+
+        
     </div>
     <br></br>
     <div class="form-actions" >
@@ -235,6 +237,7 @@
                 style="padding: 5px 100px; float: left; margin-left: 70px">
             SUBMIT
         </button> 
+
     </div>
   </form>
   <br></br>

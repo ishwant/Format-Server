@@ -1,5 +1,6 @@
 module.exports = function(app) {
 	var User            = require('./models/user.js');
+	var program            = require('./models/program.js');
 
 	//===============GET ALL PATIENT RECORDS===========================
 
@@ -188,5 +189,42 @@ module.exports = function(app) {
         console.log('token in generateToken %s', token);
         return token;   
     };
+
+    //////////////////////////////////////////////////////////////////
+
+    //=============HANDLING PROGRAMS================================
+
+    //GET ALL PROGRAMS
+    app.get('/programs', function(req, res) {
+
+		program.find(function(err, prgm) {
+
+			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+			if (err)
+				res.send(err)
+
+			res.json(prgm); // return all todos in JSON format
+		});
+	});	
+
+    //ADD NEW PROGRAM
+    app.post('/programs', function(req, res) {
+		var newProgram = new program();
+
+		newProgram.programName = req.body.programName;
+		newProgram.programAlias = req.body.programAlias;
+		
+		program.findOne({programName: newProgram.programName}, function(err,found){
+			if(found==null){
+				newProgram.save(function(err){
+					if(err){
+						console.log(err);
+						res.send(err);
+					}
+					res.json({message: 'New Program Saved'});
+				});
+			}
+		});
+	});	
 
 };

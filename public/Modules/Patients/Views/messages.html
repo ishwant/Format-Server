@@ -1,0 +1,42 @@
+<div class="container" ng-controller="singlePatientCtrl" ng-init=''>
+    <h1 class="panel-heading" class="glyphicon glyphicon-add">PATIENT MESSAGES</h1>
+
+    <div align="left" style="padding-bottom: 12px; padding-right: 12px;">
+        <form class="form-inline">
+            <div class="form-group has-feedback">
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+        </form>
+    </div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th ng-click="sort('p_share_date')">Date
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='p_share_date'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('p_message')">Message
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='p_message'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="user in users|orderBy:sortKey:reverse|filter:search|itemsPerPage:10" ng-controller="singlePatientCtrl">
+
+                    <td>{{user.p_messages.p_date}}</td>
+                    <td>{{user.p_messages.p_message}}</td>
+
+                    <td><a ng-click="viewPatient(user)" class="glyphicon glyphicon-trash"></a></td>
+                </tr>
+            </tbody>
+        </table> 
+        <dir-pagination-controls
+            max-size="10"
+            direction-links="true"
+            boundary-links="true" >
+        </dir-pagination-controls>
+    </div>
+</div>
+<!-- Ends Controller -->
+

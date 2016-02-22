@@ -34,6 +34,10 @@ var userSchema = mongoose.Schema({
         	reading_value  : Number,
 
         	activity_time  : Number,
+        }],
+        p_messages        : [{
+                p_share_date      : Date,
+                p_message         : String,
         }]
 });
 

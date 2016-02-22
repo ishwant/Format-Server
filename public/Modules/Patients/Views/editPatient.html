@@ -184,11 +184,10 @@
         <label class="control-label col-sm-2" for="case_worker" >* Case Worker:</label>
 
         <div class="col-sm-3">
-            <input  type="text" 
-                    class="form-control" 
-                    name="case_worker" 
-                    ng-model="patient.p_case_worker" 
-                    required>
+            <select class="form-control" id="case_worker" ng-model="patient.p_case_worker" ng-controller="allCaseWorkersCtrl" ng-init="getAllCaseWorkers()" ng-change="changeValue(patient.p_case_worker)" required>
+                <option>----Please select----</option>
+                <option ng-repeat="user in users">{{user.c_first_name}} {{user.c_last_name}} (ID = {{user.c_id}})</option>
+            </select>
             <p  ng-show="editPatientProfileForm.case_worker.$invalid && !editPatientProfileForm.case_worker.$pristine" 
                 class="help-block">
                 Select a case worker!

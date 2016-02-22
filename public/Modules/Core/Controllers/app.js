@@ -78,6 +78,11 @@
 			controller: 'singleCaseWorkerCtrl'
 		})
 
+		.when('/viewPatientMessages/:p_id', {
+			templateUrl: 'Modules/Patients/Views/messages.html',
+			controller: 'singlePatientCtrl'
+		})
+
 		.otherwise({
 			redirectTo: '/'
 		});

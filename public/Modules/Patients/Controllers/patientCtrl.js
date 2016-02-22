@@ -204,20 +204,70 @@
                         $scope.error_message = response.error_message;
                     });
             };
+
+            //=============VIEW MESSAGES=============================
+            $scope.viewPatientMessages = function(patient){
+                
+                console.log('object to view messages: %s', patient.p_token);
+                $rootScope.p_id = patient.p_id;
+                var url = '/viewPatientMessages/'+ patient.p_id;
+                $location.path(url);
+                console.log('location changed');
+            };
+            $scope.viewPatientMessages = function(patient){
+                
+                console.log('object to view messages: %s', patient.p_token);
+                $rootScope.p_id = patient.p_id;
+                var url = '/viewPatientMessages/'+ patient.p_id;
+                $location.path(url);
+                console.log('location changed');
+            };
         }
     ]);
+
+    //====================CONTROLLER FOR PROGRAMS===============
+
+    //MODAL
+
     
 
-    var updatePatient = function(http, patient) {
+    //MODAL END
+
+
+    app.controller('programCtrl', [
+        '$scope', 
+        '$http', 
+        function($scope, $http) {
+
+            $scope.getAllPrograms = function() {
+
+                var url = '/programs/';
+                console.log('hello');
                 
-        var url = '/envelopes/' + envelope._id;
-        
-        http.put(url, envelope).success
-            (function(response, status, headers, config){
+                $http.get(url).success(function(data) {
+                    console.log(data);
+                    $scope.programs = data;
+                });
+            };  
+            $scope.addNewProgram = function(program) {
+
+                var url = '/programs/';
+                console.log(program);
+                $scope.go = false;
+                if(program){
+                    $scope.go = true;
+                }
+                if($scope.go){
+
+                    $http.post(url, program).success(function(response, status, headers, config){
+                    console.log('success');
+                    }).error(function(response, status, headers, config){
+                        $scope.error_message = response.error_message;
+                    });
+                } 
                 
-            }).error(function(response, status, headers, config){
-                $scope.error_message = response.error_message;
-                
-        });
-    };
+            }; 
+        }
+    ]); 
+    
 })();
