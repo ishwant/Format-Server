@@ -71,7 +71,10 @@
         '$routeParams',
         function ($scope, $rootScope, $http, $location, $routeParams) {
 
-            $rootScope.hideAlert = true;
+            $scope.sort = function(keyname){
+                $scope.sortKey = keyname;   //set the sortKey to the param passed
+                $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+            };
         
             //=======REGISTER A PATIENT===================
             $scope.addPatient = function(patient,isValid){
@@ -105,7 +108,6 @@
             $scope.viewRegisteredPatient = function(){
 
                 var url = '/viewPatient/'+ $rootScope.p_id;
-                $scope.hideAlert = $rootScope.hideAlert;
                 $http.get(url).success(function(data) {
                     console.log(data);
                     $scope.patient = data;
@@ -208,19 +210,38 @@
             //=============VIEW MESSAGES=============================
             $scope.viewPatientMessages = function(patient){
                 
-                console.log('object to view messages: %s', patient.p_token);
+            //    console.log('object to view messages: %s', patient.p_token);
                 $rootScope.p_id = patient.p_id;
+                $rootScope.patient = patient;
                 var url = '/viewPatientMessages/'+ patient.p_id;
                 $location.path(url);
                 console.log('location changed');
             };
-            $scope.viewPatientMessages = function(patient){
-                
-                console.log('object to view messages: %s', patient.p_token);
-                $rootScope.p_id = patient.p_id;
-                var url = '/viewPatientMessages/'+ patient.p_id;
-                $location.path(url);
-                console.log('location changed');
+            $scope.viewlistofPatientMessages = function(){
+
+                var url = '/viewPatient/'+ $rootScope.p_id;
+                $http.get(url).success(function(data) {
+                    console.log(data);
+                    $scope.p_messages = data.p_messages;
+                    $scope.p_first_name = data.p_first_name;
+                    $scope.p_last_name = data.p_last_name;
+                    $scope.p_dob = data.p_dob;
+                    $scope.p_program = data.p_program; 
+                    console.log($scope.p_messages);
+                });
+            };
+            $scope.deleteMessage = function(message){
+
+                var url = '/deleteMessage/'+ $rootScope.p_id + '/' + message.m_id;
+                console.log(url);
+                $http.delete(url).success(function(response, status, headers, config){
+                    console.log(response.message);
+                //    window.location.reload();
+                    $scope.viewlistofPatientMessages();
+                }).error(function(response, status, headers, config){
+                    $scope.error_message = response.error_message; 
+                    console.log(response.error_message);     
+                });
             };
         }
     ]);

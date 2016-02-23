@@ -36,9 +36,10 @@ var userSchema = mongoose.Schema({
         	activity_time  : Number,
         }],
         p_messages        : [{
-                p_share_date      : Date,
-                p_message         : String,
-        }]
+                m_id              : mongoose.Schema.Types.ObjectId,
+                m_share_date      : Date,
+                m_message         : String,
+        }],
 });
 
 // checking if token is valid

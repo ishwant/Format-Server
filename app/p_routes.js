@@ -168,6 +168,28 @@ module.exports = function(app) {
 		});
 	});	
 
+	//================DELETE A MESSAGE=============================
+
+	app.delete('/deleteMessage/:p_id/:m_id', function(req, res) {
+		
+		var patient_id = req.params.p_id;
+		var message_id = req.params.m_id;
+
+		console.log("p_id: %s", patient_id);
+		console.log("m_id: %s", message_id);
+
+		User.findOneAndUpdate({p_id: patient_id},{$pull:{p_messages: {m_id:message_id}}}, function(err) {
+		
+			if (err)
+			{
+				console.log(err);
+				res.send(err);
+			}
+
+			res.json({ message: 'message deleted' });
+		});
+	});	
+
 
 	//============FUNCTION TO GENERATE TOKEN==========================
     var generateToken = function (){
