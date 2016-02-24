@@ -25,6 +25,7 @@
                 
                 $http.get(url).success(function(data) {
                     console.log(data);
+
                     $scope.users = data;
                 });
             };  
@@ -110,12 +111,16 @@
                 var url = '/viewPatient/'+ $rootScope.p_id;
                 $http.get(url).success(function(data) {
                     console.log(data);
+
                     $scope.patient = data;
                     if(data.p_active==true){
                         $scope.patient.p_status = 'Active';
                     } else{
                         $scope.patient.p_status = 'De-active';
                     }
+                    $scope.patient = data;
+                    $scope.patient.p_dob = new Date(data.p_dob);
+
                 });
             };
             $scope.viewPatient = function(patient){
@@ -146,6 +151,7 @@
                 console.log('editPatient function called');
                 console.log(patient);
                 console.log(isValid);
+                console.log(patient.p_program);
 
                 if(isValid){
                     console.log(patient);
@@ -243,6 +249,46 @@
                     console.log(response.error_message);     
                 });
             };
+
+            //============VIEW MESSAGES=============================
+            $scope.viewPatientReport = function(patient){
+                $rootScope.p_id = patient.p_id;
+                $rootScope.patient = patient;
+                var url = '/viewPatientReport/'+ patient.p_id;
+                $location.path(url);
+                console.log('location changed');
+            };
+            $scope.viewlistofPatientEntries = function(){
+
+                var url = '/viewPatient/'+ $rootScope.p_id;
+                $http.get(url).success(function(data) {
+                    console.log(data);
+                    
+                    $scope.p_first_name = data.p_first_name;
+                    $scope.p_last_name = data.p_last_name;
+                    $scope.p_dob = data.p_dob;
+                    $scope.p_program = data.p_program; 
+                    $scope.p_event_entries = data.p_event_entries;
+                    console.log($scope.p_event_entries);
+
+                
+                });
+            };
+            $scope.generatePdf= function(entries){
+                console.log(entries);
+            /*    var doc = new jsPDF();
+                var category = $rootScope.p_id;
+                console.log(category);
+                for(var i=0;i<entries.length;i++){
+                    var entry = entries[i].event_timestamp
+                }
+                doc.text(20,30,category);
+            //    doc.text(20, 30, 'This is client-side Javascript, pumping out a PDF.');
+                doc.addPage();
+             //   doc.text(20, 20, 'Do you like that?');
+                
+                doc.save('Test.pdf'); */
+            }
         }
     ]);
 

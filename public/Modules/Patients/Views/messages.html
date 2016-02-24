@@ -9,11 +9,11 @@
         </tr>
         <tr>
             <td><label style="float:right">Date of Birth: </label></td>
-            <td><label>{{p_dob}}</label></td>
+            <td><label>{{p_dob | date}}</label></td>
         </tr>
         <tr>
             <td><label style="float:right">Program: </label></td>
-            <td><label>{{p_program}}</label></td>
+            <td><label>{{p_program.join(', ')}}</label></td>
         </tr>
         </table>   
     </div>
@@ -41,7 +41,7 @@
             <tbody>
                 <tr dir-paginate="message in p_messages|orderBy:sortKey:reverse|filter:search|itemsPerPage:10">
 
-                    <td>{{message.m_share_date}}</td>
+                    <td>{{message.m_share_date | date}}</td>
                     <td>{{message.m_message}}</td>
 
                     <td><a onClick="return confirm('Are you absolutely sure you want to delete?')" ng-click="deleteMessage(message)" class="glyphicon glyphicon-trash"></a></td>

@@ -1,0 +1,79 @@
+<div class="container" ng-controller="singlePatientCtrl" ng-init='getUrlParamtoViewPatient()'>
+    <h1 class="panel-heading" class="glyphicon glyphicon-add">PATIENT REPORT</h1>
+    
+    <div class="panel-body" ng-init="viewlistofPatientEntries()">
+        <table class="table" style="width: auto; margin-left: auto; margin-right: auto;">
+        <tr>
+            <td><label style="float:right">Patient Name:  </label></td>
+            <td><label>{{p_first_name}} {{p_last_name}}</label></td>
+        </tr>
+        <tr>
+            <td><label style="float:right">Date of Birth: </label></td>
+            <td><label>{{p_dob}}</label></td>
+        </tr>
+        <tr>
+            <td><label style="float:right">Program: </label></td>
+            <td><label>{{p_program}}</label></td>
+        </tr>
+        </table>   
+    </div>
+
+    <div align="left" style="padding-bottom: 12px; padding-right: 12px;">
+        <form class="form-inline">
+            <div class="form-group has-feedback">
+                <input type="text" ng-model="searchText" class="form-control" placeholder="Search"> 
+                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+        <!--    <input class="btn btn-primary" onclick="$('#reportTable').tableExport({type:'pdf',escape:'false'});" role="button" value="Export">   
+                <input class="btn btn-primary" ng-click='generatePdf(p_event_entries)' value="Export"> -->
+                <input class="btn btn-primary" ng-csv="p_event_entries" csv-header="['Date', 'Type', 'Info', 'Amount', 'Notes', 'Details']" filename="{{p_id}}_{{p_first_name}}{{p_last_name}}.csv" value="Export">
+
+        </form>
+    </div>
+        <table class="table table-bordered table-striped table-hover" id="reportTable">
+            <thead>
+                <tr>
+                    <th ng-click="sort('event_timestamp')">Date
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='event_timestamp'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('category')">Type
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='category'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('event_name')">Info
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='event_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('amount')">Amount
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='amount'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('notes')">Notes
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='notes'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('event_details')">Details
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='event_details'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="entry in p_event_entries|orderBy:sortKey:reverse|filter:searchText|itemsPerPage:10">
+
+                    <td>{{entry.event_timestamp | date}}</td>
+                    <td>{{entry.category}}</td>
+                    <td>{{entry.event_name}}</td>
+                    <td ng-if="entry.category=='Medication'">{{entry.medicine_amount}} {{entry.medicine_type}}</td>
+                    <td ng-if="entry.category=='Activity'">{{entry.activity_time}} Minutes </td>
+                    <td ng-if="entry.category=='Reading'">{{entry.reading_value}} mg/dL</td>
+                    <td ng-if="entry.category=='Food'">{{entry.meal_amount}} Cal</td>
+
+                    <td>{{entry.notes}}</td>
+                    <td>{{entry.event_details}}</td>
+            </tbody>
+        </table> 
+        <dir-pagination-controls
+            max-size="10"
+            direction-links="true"
+            boundary-links="true" >
+        </dir-pagination-controls>
+    </div>
+</div>
+<!-- Ends Controller -->

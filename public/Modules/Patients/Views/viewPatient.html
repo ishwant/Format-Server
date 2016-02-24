@@ -35,7 +35,7 @@
         <label class="control-label col-sm-2">Date of Birth:</label>
 
         <div class="col-sm-3">
-            <p align="left"class="form-control-static" >{{patient.p_dob}}</p>
+            <p align="left"class="form-control-static" >{{patient.p_dob | date}}</p>
         </div>
     </div>
 
@@ -146,13 +146,8 @@
 
         <label class="control-label col-sm-2" for="program">Program:</label>
 
-        <div class="col-sm-4">
-            <label class="control-label col-sm-2">
-                <input type="checkbox"> Weight Loss 
-            </label>
-            <label class="control-label col-sm-2">
-                <input type="checkbox"> Diabetes 
-            </label>
+        <div class="col-sm-3">
+            <p align="left"class="form-control-static" >{{patient.p_program.join(', ')}}</p> 
         </div>
     </div>
 

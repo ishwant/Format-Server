@@ -56,7 +56,12 @@
         <label class="control-label col-sm-2">* Date of Birth:</label>
 
         <div class="col-sm-3">
-        <div class="input-group date" data-provide="datepicker">
+            <input  type="date" 
+                    class="form-control"
+                    name="dob" 
+                    ng-model="patient.p_dob" 
+                    Required>
+       <!-- <div class="input-group date" data-provide="datepicker">
             <input  type="text" 
                     class="form-control" 
                     name="dob" 
@@ -67,7 +72,7 @@
                 <p ng-show="editPatientProfileForm.dob.$invalid && !editPatientProfileForm.dob.$pristine" class="help-block">Date of Birth is required! Pick a date</p>
                 <span ng-if="submitted && editPatientProfileForm.dob.$error.required">Date of Birth is required! Pick a date</span> 
             </div>
-        </div>
+        </div> -->
         </div>
     </div>
 
@@ -223,13 +228,20 @@
 
         <label class="control-label col-sm-2" for="program" required>* Program:</label>
 
-        <div class="col-sm-4">
-            <label class="control-label col-sm-2">
-                <input type="checkbox"> Weight Loss 
-            </label>
-            <label class="control-label col-sm-2">
-                <input type="checkbox"> Diabetes 
-            </label>
+        <div class="col-sm-3">
+            <select multiple class="form-control" id="program" ng-controller="programCtrl" ng-init="getAllPrograms()" ng-model="patient.p_program" ng-change="changeValue(patient.p_program)">
+                <option ng-repeat="program in programs">{{program.programName}}</option>
+            </select>  
+        </div>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" ng-model="program.programName" placeholder="+ Add New Program">  
+        </div>
+        <div class="col-sm-1">
+            <button ng-click="addNewProgram(program)"
+                    ng-controller="programCtrl" 
+                    class="btn btn-default">
+                        Add
+            </button>
         </div>
     </div>
     <br></br>

@@ -8,9 +8,10 @@ module.exports = function(app) {
 
 		User.find(function(err, users) {
 
+
 			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 			if (err)
-				res.send(err)
+				res.send(err);
 
 			res.json(users); // return all todos in JSON format
 		});
@@ -89,6 +90,7 @@ module.exports = function(app) {
 			}
 			if(found!=null){
 				console.log('editPatient called, User Found!');
+				found.p_program = [];
 				found.p_id = req.body.p_id;
 				found.p_first_name = req.body.p_first_name;
 				found.p_last_name = req.body.p_last_name;
@@ -102,6 +104,7 @@ module.exports = function(app) {
 				found.p_zipcode = req.body.p_zipcode;
 				found.p_case_worker = req.body.p_case_worker;
 				found.p_program = req.body.p_program;
+				console.log(found.p_program);
 				found.p_active = req.body.p_status;
 				found.p_token = req.body.p_token;
 				found.save(function(err) {
@@ -181,7 +184,7 @@ module.exports = function(app) {
 		User.findOneAndUpdate({p_id: patient_id},{$pull:{p_messages: {m_id:message_id}}}, function(err) {
 		
 			if (err)
-			{
+			{ 
 				console.log(err);
 				res.send(err);
 			}

@@ -19,14 +19,16 @@ var userSchema = mongoose.Schema({
         p_active          : Boolean,
         p_program         : { type : Array , "default" : [] },
         p_event_entries   : [{
+
         	shared_date    : Date,
         	
         	category       : String,
         	event_name     : String,
         	event_notes    : String,
         	event_timestamp: String,
-
-        	medicine_amount: Number,
+                event_details  : { type : Array , "default" : [] },
+        	
+                medicine_amount: Number,
         	medicine_type  : String,
 
         	meal_amount    : Number,
@@ -34,6 +36,7 @@ var userSchema = mongoose.Schema({
         	reading_value  : Number,
 
         	activity_time  : Number,
+
         }],
         p_messages        : [{
                 m_id              : mongoose.Schema.Types.ObjectId,

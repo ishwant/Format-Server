@@ -20,6 +20,9 @@
 		'ngResource',
 		'ngRoute',
 		'ngSanitize',
+		
+		'ngCsv',
+
 		'ngTouch',
 		'ui.bootstrap',
 		'angularUtils.directives.dirPagination'])
@@ -82,7 +85,10 @@
 			templateUrl: 'Modules/Patients/Views/messages.html',
 			controller: 'singlePatientCtrl'
 		})
-
+		.when('/viewPatientReport/:p_id', {
+			templateUrl: 'Modules/Patients/Views/report.html',
+			controller: 'singlePatientCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

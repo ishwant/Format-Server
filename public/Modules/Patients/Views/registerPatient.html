@@ -62,7 +62,12 @@
         <label class="control-label col-sm-2">* Date of Birth:</label>
 
         <div class="col-sm-3">
-        <div class="input-group date" data-provide="datepicker">
+            <input  type="date" 
+                    class="form-control"
+                    name="dob" 
+                    ng-model="patient.p_dob" 
+                    Required>
+    <!--    <div class="input-group date" data-provide="datepicker">
             <input  type="text" 
                     class="form-control" 
                     name="dob" 
@@ -75,6 +80,7 @@
                 <span ng-if="submitted && newPatientRegistrationForm.dob.$error.required">Date of Birth is required! Pick a date</span> 
             </div>
         </div>
+    -->
         </div>
     </div>
 

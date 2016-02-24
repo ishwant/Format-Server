@@ -39,12 +39,12 @@
                     <td>{{user.p_id}}</td>
                     <td>{{user.p_first_name}}</td>
                     <td>{{user.p_last_name}}</td>
-                    <td>{{user.p_dob}}</td>
-                    <td>{{user.p_program}}</td> 
+                    <td>{{user.p_dob | date}}</td>
+                    <td>{{user.p_program.join(', ')}}</td> 
 
                     <td><a ng-click="viewPatient(user)" class="glyphicon glyphicon-pencil"></a></td>
                     <td><a ng-click="viewPatientMessages(user)" class="glyphicon glyphicon glyphicon-envelope"></a></td>
-                    <td><a ng-click="" class="glyphicon glyphicon glyphicon glyphicon-file"></a></td>
+                    <td><a ng-click="viewPatientReport(user)" class="glyphicon glyphicon glyphicon glyphicon-file"></a></td>
                 </tr>
             </tbody>
         </table> 

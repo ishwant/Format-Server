@@ -1,0 +1,84 @@
+//READING
+
+db.users.update(
+	{"p_id": "345LM"}, 
+	{$push:{
+		"p_event_entries": 
+			{
+				'shared_date' 		: '02/02/2016', 
+				'category'	  		: 'Reading', 
+				'event_name'  		: 'Blood Glucose Level', 
+				'event_notes' 		: 'healthy', 
+				'event_timestamp'	: '01/02/2016', 
+				'event_details'		: 'pre-exercise', 
+				'reading_value'		: '55' 
+			}
+			}
+	}
+)
+
+//MEDICATION
+
+db.users.update(
+	{"p_id": "345LM"}, 
+	{$push:{
+		"p_event_entries": 
+			{
+				'shared_date' 		: '01/03/2016', 
+				'category'	  		: 'Reading', 
+				'event_name'  		: 'Paracetamol', 
+				'event_notes' 		: 'fever', 
+				'event_timestamp'	: '01/02/2016', 
+				'event_details'		: 'post-exercise', 
+				'medicine_amount'	: '2', 
+				'medicine_type'		: 'pills'
+			}
+			}
+	}
+)
+
+//ACTIVITY
+
+db.users.update(
+	{"p_id": "345LM"}, 
+	{$push:{
+		"p_event_entries": 
+			{
+				'shared_date' 		: '02/02/2016', 
+				'category'	  		: 'Reading', 
+				'event_name'  		: 'Blood Glucose Level', 
+				'event_notes' 		: 'healthy', 
+				'event_timestamp'	: '01/02/2016', 
+				'event_details'		: 'pre-exercise', 
+				'medicine_amount'	: '2', 
+				'medicine_type'		: 'pills', 
+				'meal_amount'		: '230', 
+				'reading_value'		: '55', 
+				'activity_time'		: '30' 
+			}
+			}
+	}
+)
+
+//FOOD
+
+db.users.update(
+	{"p_id": "345LM"}, 
+	{$push:{
+		"p_event_entries": 
+			{
+				'shared_date' 		: '02/02/2016', 
+				'category'	  		: 'Reading', 
+				'event_name'  		: 'Blood Glucose Level', 
+				'event_notes' 		: 'healthy', 
+				'event_timestamp'	: '01/02/2016', 
+				'event_details'		: 'pre-exercise', 
+				'medicine_amount'	: '2', 
+				'medicine_type'		: 'pills', 
+				'meal_amount'		: '230', 
+				'reading_value'		: '55', 
+				'activity_time'		: '30' 
+			}
+			}
+	}
+)
